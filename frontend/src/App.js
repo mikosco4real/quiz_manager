@@ -1,19 +1,19 @@
 import Header from './components/Header'
-import ListQuiz from './components/ListQuiz'
-
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
+import Home from './Pages/Home'
+import CreateQuiz from './Pages/CreateQuiz'
 
 function App() {
   return (
     <div className="container">
+      <Router>
       <Header />
-      <div className="quiz_card">
-        <ListQuiz />
-        <ListQuiz />
-        <ListQuiz />
-        <ListQuiz />
-        <ListQuiz />
-        <ListQuiz />
-      </div>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/create_quiz" exact component={CreateQuiz} />
+          <Route path="*" exact component={CreateQuiz} />
+        </Switch>
+      </Router>
     </div>
   );
 }
