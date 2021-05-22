@@ -1,18 +1,23 @@
 import React from 'react'
 import { Alignment, Button, Card, Elevation } from "@blueprintjs/core";
+import { useHistory } from 'react-router';
 
 
-const ListQuiz = () => {
+const ListQuiz = (props) => {
+        const history = useHistory()
     return (
-        <div className="">
-            <Card interactive={true} elevation={Elevation.THREE}>
-                <h3><a href="#">Quiz 1 - Quiz Title</a></h3>
-                <p>How Many Questions</p>
-                <p>Difficulty Rating</p>
-                <p>Creation Date</p>
-                <p>Created By: Michael Okolo</p>
-                <Button align={Alignment.RIGHT} className="primary">Submit</Button>
+        <div className="quiz_card" >
+            {props.quiz.map((quiz) => 
+                <Card interactive={true} elevation={Elevation.THREE} key={quiz.id.toString()}>
+                <h3>{quiz.title}</h3>
+                <p>No of Questions: {quiz.no_questions}</p>
+                <p>Duration: {quiz.duration}</p>
+                <p>Creation Date: {quiz.date}</p>
+                <p>Created By: {quiz.created_by}</p>
+                <Button align={Alignment.LEFT} intent="primary" style={{"marginRight": "1em"}} onClick={() => history.push(`/create_quiz/${quiz.id}`)}>Edit</Button>
+                <Button align={Alignment.RIGHT} intent="danger" onClick={() => props.removeQuiz(quiz.id)} >Delete</Button>
             </Card>
+            )}   
         </div>
     )
 }

@@ -34,3 +34,13 @@ code {
 .quiz_card > * {
   flex: 1 1 25em;
 }
+
+.button-link {
+  text-decoration: None;
+}
+
+.add_quiz_form {
+  display: flex;
+  align-items: center;
+  margin: 2em
+}

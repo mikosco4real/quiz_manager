@@ -1,6 +1,6 @@
 import React from 'react'
 import {Navbar, Button, Alignment } from '@blueprintjs/core'
-import { Link, BrowserRouter as Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
