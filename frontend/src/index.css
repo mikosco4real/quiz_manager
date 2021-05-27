@@ -40,7 +40,14 @@ code {
 }
 
 .add_quiz_form {
-  display: flex;
-  align-items: center;
+  display: block;
+  place-items: center;
   margin: 2em
 }
+
+.add_questions_form {
+  display: grid;
+  grid-template-columns: minmax(200px, 30%) auto;
+  column-gap: 1em;
+}
+

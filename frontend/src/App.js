@@ -59,14 +59,19 @@ function App() {
     setQuiz([...quiz, data]);
   };
 
+  const updateQuiz = (data) => {
+    const quizObject = quiz.filter((quiz) => quiz.id !== data.id)
+    setQuiz([...quizObject, data])
+  }
+
   return (
     <div className="container">
       <Router>
       <Header />
         <Switch>
           <Route path="/" exact component={ () => <Home quiz={quiz} removeQuiz={handleRemove} />} />
-          <Route path="/create_quiz" exact component={() => <CreateQuiz quiz={quiz} add={addQuiz} />} />
-          <Route path="/create_quiz/:id" exact component={() => <CreateQuiz quiz={quiz} add={addQuiz} />} />
+          <Route path="/create_quiz" exact component={() => <CreateQuiz quiz={quiz} add={addQuiz} update={updateQuiz}/>} />
+          <Route path="/create_quiz/:id" exact component={() => <CreateQuiz quiz={quiz} add={addQuiz} update={updateQuiz}/>} />
           <Route path="*" exact component={PageNotFound} />
         </Switch>
       </Router>

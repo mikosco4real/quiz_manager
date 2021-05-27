@@ -1,10 +1,17 @@
 import React from 'react'
+import CreateQuestion from './CreateQuestion';
+import Question from './Question';
 
 const EditQuiz = (props) => {
-    console.log(props)
     return (
-        <div>
-            Hello World. Our quiz ID is {props.quiz[0].id}. Let us Edit it.
+        <div className="add_questions_form">
+            <div>
+                <CreateQuestion quiz={props.quiz} update={props.update}/>
+            </div>
+            <div>
+                <h3>Questions</h3>
+                <Question quiz={props.quiz}/>
+            </div>
         </div>
     )
 }
