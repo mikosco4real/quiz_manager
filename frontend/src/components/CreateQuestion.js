@@ -5,6 +5,7 @@ const CreateQuestion = (props) => {
     const [quizData, setQuizData] = useState(props.quiz)
     const [question, setQuestion] = useState({question: "", type: "", options: [], answer:""})
     let addButton = false;
+    const [formStates, setFormStates] = useState({questionInputIntent: "default", questionInputLabel: ""})
 
     const handleInput = (e) => {
         setQuizData({...quizData, [e.target.name]: e.target.value})
@@ -15,6 +16,12 @@ const CreateQuestion = (props) => {
             setQuestion({...question, [e.target.name]: e.target.value, options: []})
         }
         else{
+            if(e.target.name === "question" && e.target.value !== ""){
+                setFormStates({...formStates, questionInputIntent: "default"})
+            }
+            else{
+                setFormStates({...formStates, questionInputIntent: "danger"})
+            }
             setQuestion({...question, [e.target.name]: e.target.value})
         }
     }
@@ -43,6 +50,10 @@ const CreateQuestion = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(question.question === ""){
+            setFormStates({questionInputIntent: "danger", questionInputLabel: "(required)"})
+            return
+        }
         props.update({...quizData, questions: [...quizData.questions, question]})
     }
     return (
@@ -58,8 +69,8 @@ const CreateQuestion = (props) => {
             </ControlGroup>
             <h3> Add a Question </h3>
             <Divider />
-            <FormGroup label="Question" labelFor="question" labelInfo="">
-                <InputGroup id="question" placeholder="question" value={question.question} name="question" onChange={e => handleQuestions(e)} />
+            <FormGroup label="Question" labelFor="question" labelInfo={formStates.questionInputLabel}>
+                <InputGroup intent={formStates.questionInputIntent} id="question" placeholder="question" value={question.question} name="question" onChange={e => handleQuestions(e)} />
             </FormGroup>
             <FormGroup label="Question Type" labelFor="question" labelInfo=" (Type of question)">
                 <HTMLSelect className="bp3-fill" name="type" onChange={handleQuestions}>
