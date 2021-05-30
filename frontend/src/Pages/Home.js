@@ -9,7 +9,7 @@ function Home(props) {
             <h1>Home Page</h1>
             <Link to="/create_quiz"><Button className="bp3-button" icon="add" text="New" intent="primary" style={{margin: "2em"}}/> </Link>
             <div>
-                <ListQuiz quiz={props.quiz} removeQuiz={props.removeQuiz} />
+                <ListQuiz />
             </div>
         </div>
     )

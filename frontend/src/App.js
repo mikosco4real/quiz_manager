@@ -4,6 +4,7 @@ import Home from './Pages/Home'
 import CreateQuiz from './Pages/CreateQuiz'
 import PageNotFound from './Pages/PageNotFound'
 import { useState } from 'react'
+import EditQuiz from './components/EditQuiz'
 
 function App() {
   const quiz_data = [
@@ -71,7 +72,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={ () => <Home quiz={quiz} removeQuiz={handleRemove} />} />
           <Route path="/create_quiz" exact component={() => <CreateQuiz quiz={quiz} add={addQuiz} update={updateQuiz}/>} />
-          <Route path="/create_quiz/:id" exact component={() => <CreateQuiz quiz={quiz} add={addQuiz} update={updateQuiz}/>} />
+          <Route path="/edit_quiz/:id" exact component={() => <EditQuiz />} />
           <Route path="*" exact component={PageNotFound} />
         </Switch>
       </Router>

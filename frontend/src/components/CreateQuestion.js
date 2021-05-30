@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import {FormGroup, InputGroup, ControlGroup, Divider, HTMLSelect, Button } from '@blueprintjs/core'
+import { connect } from 'react-redux'
+import { updateQuiz } from '../actions'
 
-const CreateQuestion = (props) => {
-    const [quizData, setQuizData] = useState(props.quiz)
+const CreateQuestion = ({quiz, id, updateQuizPressed}) => {
+    const quizObject = quiz.find(q => q.id === 1)
+    const [quizData, setQuizData] = useState(quizObject)
+    console.log(quizData)
     const [question, setQuestion] = useState({question: "", type: "", options: [], answer:""})
     let addButton = false;
     const [formStates, setFormStates] = useState({questionInputIntent: "default", questionInputLabel: ""})
@@ -54,7 +58,7 @@ const CreateQuestion = (props) => {
             setFormStates({questionInputIntent: "danger", questionInputLabel: "(required)"})
             return
         }
-        props.update({...quizData, questions: [...quizData.questions, question]})
+        updateQuizPressed({...quizData, questions: [...quizData.questions, question]})
     }
     return (
         <div>
@@ -112,4 +116,11 @@ const CreateQuestion = (props) => {
     )
 }
 
-export default CreateQuestion
+const mapStateToProps = state => ({
+    quiz: state.quiz,
+});
+const mapDispatchToProps = dispatch => ({
+    updateQuizPressed: quiz => dispatch(updateQuiz(quiz)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateQuestion);

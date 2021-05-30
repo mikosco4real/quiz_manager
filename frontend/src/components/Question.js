@@ -1,11 +1,12 @@
 import { Card } from '@blueprintjs/core'
 import React from 'react'
 
-const Question = (props) => {
+const Question = ({id}) => {
+    const quiz = {questions: []}
     return (
         <div>
-            { props.quiz.questions.length > 0 ?
-                props.quiz.questions.map((item, index) => 
+            { quiz.questions.length > 0 ?
+                quiz.questions.map((item, index) => 
                 <Card key={index} className="bp3-dark">
                     <p>{item.question}</p>
                     {item.options.length > 0 ? <ol className="bp3-list" type="a">

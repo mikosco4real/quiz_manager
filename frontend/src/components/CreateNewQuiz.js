@@ -1,14 +1,14 @@
 import { Button, FormGroup, InputGroup } from '@blueprintjs/core'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
+import { connect } from 'react-redux'
+import { createQuiz } from '../actions'
 
-const CreateNewQuiz = (props) => {
+const CreateNewQuiz = ({createNewQuizPressed, }) => {
     const history = useHistory()
     const dataSchema = {
-        "id": 0,
         "title": "",
         "created_by": "Michael Okolo",
-        "date": "",
         "duration": "",
         "no_questions": 0,
         "questions": [],
@@ -22,7 +22,7 @@ const CreateNewQuiz = (props) => {
 
     const addNewQuiz = (e) => {
         e.preventDefault()
-        props.add(quizData)
+        createNewQuizPressed(quizData)
         history.push("/")
     }
     return (
@@ -42,4 +42,9 @@ const CreateNewQuiz = (props) => {
     )
 }
 
-export default CreateNewQuiz
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({
+    createNewQuizPressed: quiz => dispatch(createQuiz(quiz))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNewQuiz);

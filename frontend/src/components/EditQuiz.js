@@ -1,16 +1,18 @@
 import React from 'react'
+import { useParams } from 'react-router';
 import CreateQuestion from './CreateQuestion';
 import Question from './Question';
 
-const EditQuiz = (props) => {
+const EditQuiz = () => {
+    const id = useParams();
     return (
         <div className="add_questions_form">
             <div>
-                <CreateQuestion quiz={props.quiz} update={props.update}/>
+                <CreateQuestion id={id} />
             </div>
             <div>
                 <h3>Questions</h3>
-                <Question quiz={props.quiz}/>
+                <Question id={id}/>
             </div>
         </div>
     )

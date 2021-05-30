@@ -15,7 +15,7 @@ function CreateQuiz(props) {
     }
     return (
         <div className="add_quiz_form">
-            { id ? <EditQuiz quiz={foundQuiz} update={props.update}/> : <CreateNewQuiz add={props.add}/> }
+            { id ? <EditQuiz quiz={foundQuiz} update={props.update}/> : <CreateNewQuiz/> }
         </div>
     )
 }
