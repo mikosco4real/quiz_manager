@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import { updateQuiz } from '../actions'
 
 const CreateQuestion = ({quiz, id, updateQuizPressed}) => {
-    const quizObject = quiz.find(q => q.id === 1)
+    const quizObject = quiz.find(q => q.id === parseInt(id.id))
     const [quizData, setQuizData] = useState(quizObject)
-    console.log(quizData)
     const [question, setQuestion] = useState({question: "", type: "", options: [], answer:""})
     let addButton = false;
     const [formStates, setFormStates] = useState({questionInputIntent: "default", questionInputLabel: ""})
@@ -58,7 +57,7 @@ const CreateQuestion = ({quiz, id, updateQuizPressed}) => {
             setFormStates({questionInputIntent: "danger", questionInputLabel: "(required)"})
             return
         }
-        updateQuizPressed({...quizData, questions: [...quizData.questions, question]})
+        updateQuizPressed({...quizObject, questions: [...quizObject.questions, question]})
     }
     return (
         <div>
